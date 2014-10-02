@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'beaker/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "beaker-ruby"
+  spec.name          = 'beaker'
   spec.version       = Beaker::VERSION
   spec.authors       = ["everydayhero"]
   spec.summary       = %q{Ruby client for Beaker}
