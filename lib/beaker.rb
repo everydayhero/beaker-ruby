@@ -14,9 +14,12 @@ module Beaker
 
     def participate experiment_name
       group = participate_request experiment_name
-      yield group if block_given?
 
-      group
+      if block_given?
+        yield group
+      else
+        group
+      end
     end
 
     private
