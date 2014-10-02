@@ -1,4 +1,5 @@
-require "beaker/version"
+require 'beaker/version'
+require 'json'
 
 module Beaker
   extend self
@@ -26,11 +27,17 @@ module Beaker
       uri = participate_uri experiment_name
       res = Net::HTTP.get_response uri
 
-      res.body if res.is_a?(Net::HTTPSuccess)
+      group_from res.body if res.is_a? Net::HTTPSuccess
+    end
+
+    def group_from raw_body
+      JSON.parse(raw_body)['alternative']
+    rescue
+      nil
     end
 
     def participate_uri experiment_name
-      URI base_url + "/participate/#{experiment_name}/#{user_id}"
+      URI base_url + "/experiments/participate/#{experiment_name}/#{user_id}"
     end
   end
 end
