@@ -9,7 +9,7 @@ describe Beaker::Session do
 
     subject { Beaker::Session.new user_id }
 
-    context 'When beaker server successfully respond' do
+    context 'When beaker server successfully responds' do
       before do
         stub_request(:get, experiment_url(ab_test, user_id))
           .to_return body: response
@@ -25,7 +25,7 @@ describe Beaker::Session do
       }
     end
 
-    context 'When beaker server respond invalid payload' do
+    context 'When beaker server responds invalid payload' do
       before do
         stub_request(:get, experiment_url(ab_test, user_id))
           .to_return body: response
@@ -41,7 +41,7 @@ describe Beaker::Session do
       }
     end
 
-    context 'When beaker server not responding 200' do
+    context 'When beaker server responds error status' do
       before do
         stub_request(:get, experiment_url(ab_test, user_id))
           .to_return status: [500, 'Internal Server Error']
