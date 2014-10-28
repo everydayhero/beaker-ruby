@@ -11,8 +11,8 @@ module Beaker
       @base_url = Beaker.base_url
     end
 
-    def participate experiment_name
-      group = participate_request experiment_name
+    def participate experiment_name, default: nil
+      group = participate_request(experiment_name) || default
 
       if block_given?
         yield group
