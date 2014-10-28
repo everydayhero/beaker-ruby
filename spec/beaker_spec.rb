@@ -55,7 +55,7 @@ describe Beaker::Session do
       }
     end
 
-    context 'When connect to beaker server timeout' do
+    context 'When connecting to beaker server times out' do
       before do
         stub_request(:get, experiment_url(ab_test, user_id)).to_timeout
       end
