@@ -2,9 +2,8 @@ require 'beaker/version'
 require 'json'
 
 module Beaker
-  extend self
-
   attr_accessor :base_url
+  module_function :base_url, :base_url=
 
   class Session
     def initialize user_id
@@ -31,12 +30,12 @@ module Beaker
       res = Net::HTTP.get_response uri
 
       group_from res.body if res.is_a? Net::HTTPSuccess
+    rescue
+      nil
     end
 
     def group_from raw_body
       JSON.parse(raw_body)['alternative']
-    rescue
-      nil
     end
 
     def participate_uri experiment_name
